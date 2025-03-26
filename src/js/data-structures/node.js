@@ -12,8 +12,8 @@ function Node(value = null) {
         }
       }
       _next = newNode;
-    }
-  }
+    },
+  };
 
   return newNode;
 }
