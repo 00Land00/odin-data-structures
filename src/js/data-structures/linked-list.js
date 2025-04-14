@@ -86,13 +86,15 @@ function LinkedList() {
     return false;
   }
 
-  function find(value) {
+  function find(arg) {
     let curNode = headNode;
     let i = 0;
+
+    const isPredicate = typeof arg === "function";
     while (curNode !== null) {
-      if (curNode.value === value) {
-        return i;
-      }
+      const match = isPredicate ? arg(curNode.value) : curNode.value === arg; 
+
+      if (match) return i;
       curNode = curNode.next;
       i++;
     }
