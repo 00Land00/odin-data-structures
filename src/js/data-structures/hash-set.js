@@ -1,13 +1,13 @@
 import { LinkedList } from "js/data-structures/linked-list";
 import { LinkedListIterator } from "js/data-structures/linked-list-iterator";
 
-function HashMap() {
+function HashSet() {
   const MAX_LOAD_FACTOR = 0.75;
   const MIN_LOAD_FACTOR = 0.25;
   const MIN_CAPACITY = 16;
   let count = 0;
   let capacity = MIN_CAPACITY;
-  let hashMap = Array(capacity)
+  let hashSet = Array(capacity)
     .fill(null)
     .map(() => LinkedList());
 
@@ -23,11 +23,11 @@ function HashMap() {
   }
 
   function resize() {
-    const entryArr = entries();
+    const keyArr = keys();
     clear();
 
-    entryArr.forEach(([key, value]) => {
-      set(key, value);
+    keyArr.forEach(key => {
+      set(key);
     });
   }
 
@@ -36,16 +36,14 @@ function HashMap() {
     resize();
   }
 
-  function set(key, value) {
+  function set(key) {
     if (has(key)) {
-      const node = get(key);
-      node.value = value;
       return;
     }
 
     const hashCode = hash(key);
-    const linkedList = hashMap[hashCode];
-    linkedList.prepend({ key, value });
+    const linkedList = hashSet[hashCode];
+    linkedList.prepend(key);
     count++;
 
     if (count > MAX_LOAD_FACTOR * capacity) {
@@ -64,8 +62,8 @@ function HashMap() {
     }
 
     const hashCode = hash(key);
-    const linkedList = hashMap[hashCode];
-    linkedList.removeAt(linkedList.find(nodeValue => nodeValue.key === key));
+    const linkedList = hashSet[hashCode];
+    linkedList.removeAt(linkedList.find(key));
     count--;
 
     if (count < MIN_LOAD_FACTOR * capacity && capacity > MIN_CAPACITY) {
@@ -77,11 +75,11 @@ function HashMap() {
 
   function get(key) {
     const hashCode = hash(key);
-    const linkedList = hashMap[hashCode];
+    const linkedList = hashSet[hashCode];
     const iter = LinkedListIterator(linkedList);
     while (iter.hasMore()) {
       const next = iter.getNext();
-      if (next.value.key === key) {
+      if (next.value === key) {
         return next.value;
       }
     }
@@ -98,47 +96,33 @@ function HashMap() {
 
   function clear() {
     count = 0;
-    hashMap = Array(capacity)
+    hashSet = Array(capacity)
       .fill(null)
       .map(() => LinkedList());
   }
 
   function keys() {
-    const keyArr = entries().map((keyVal) => keyVal[0]);
-    return keyArr;
-  }
-
-  function values() {
-    const valueArr = entries().map((keyVal) => keyVal[1]);
-    return valueArr;
-  }
-
-  function entries() {
-    const entryArr = [];
-    hashMap.forEach((linkedList) => {
+    const keyArr = [];
+    hashSet.forEach((linkedList) => {
       if (linkedList.size() > 0) {
         const iter = LinkedListIterator(linkedList);
         while (iter.hasMore()) {
           const node = iter.getNext();
-          entryArr.push([node.value.key, node.value.value]);
+          keyArr.push(node.value);
         }
       }
     });
-
-    return entryArr;
+    return keyArr;
   }
 
   return {
     set,
-    get,
     has,
     remove,
     length,
     clear,
     keys,
-    values,
-    entries,
   };
 }
 
-export { HashMap };
+export { HashSet };
