@@ -7,6 +7,7 @@ function LinkedList() {
 
   function append(value) {
     const newNode = Node(value);
+    newNode.next = null;
     if (headNode === null) {
       headNode = newNode;
     }
