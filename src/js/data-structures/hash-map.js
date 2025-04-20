@@ -116,7 +116,7 @@ function HashMap() {
   function entries() {
     const entryArr = [];
     hashMap.forEach((linkedList) => {
-      if (linkedList.size() > 0) {
+      if (!linkedList.isEmpty()) {
         const iter = LinkedListIterator(linkedList);
         while (iter.hasMore()) {
           const node = iter.getNext();

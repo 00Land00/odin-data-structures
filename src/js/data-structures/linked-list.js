@@ -40,7 +40,7 @@ function LinkedList() {
   }
 
   function isEmpty() {
-    return nodeSize === 0;
+    return nodeSize <= 0;
   }
 
   function head() {

@@ -104,7 +104,7 @@ function HashSet() {
   function keys() {
     const keyArr = [];
     hashSet.forEach((linkedList) => {
-      if (linkedList.size() > 0) {
+      if (!linkedList.isEmpty()) {
         const iter = LinkedListIterator(linkedList);
         while (iter.hasMore()) {
           const node = iter.getNext();
