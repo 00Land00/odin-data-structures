@@ -1,11 +1,11 @@
 import { Node } from "js/data-structures/node";
-import { LinkedList } from "js/data-structures/linked-list";
+import { Queue } from "js/data-structures/queue";
 
-function BinarySearchTree(initArr) {
-  initArr = [...new Set(initArr)];
+function BinarySearchTree(arr) {
+  let initArr = [...new Set(arr)];
   initArr.sort((a, b) => a - b);
   let root = buildTree(initArr);
-  const queue = LinkedList();
+  const queue = Queue();
 
   function buildTree(arr) {
     if (arr.length === 0) {
@@ -121,14 +121,14 @@ function BinarySearchTree(initArr) {
       return;
     }
 
-    const nextNode = queue.shift().value;
+    const nextNode = queue.dequeue().value;
     callbackFn(nextNode);
 
     if (nextNode.left) {
-      queue.append(nextNode.left);
+      queue.enqueue(nextNode.left);
     }
     if (nextNode.right) {
-      queue.append(nextNode.right);
+      queue.enqueue(nextNode.right);
     }
 
     _levelOrder(callbackFn);
@@ -139,7 +139,7 @@ function BinarySearchTree(initArr) {
       throw Error("A callback function is required");
     }
     queue.clear();
-    queue.append(root);
+    queue.enqueue(root);
     _levelOrder(callbackFn);
   }
 
