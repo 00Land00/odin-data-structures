@@ -1,20 +1,14 @@
+import { LinkedList } from "js/data-structures/linked-list";
+import { LinkedListIterator } from "js/data-structures/linked-list-iterator";
+// queue and stack
 import { HashMap } from "js/data-structures/hash-map";
+import { HashSet } from "js/data-structures/hash-set";
+import { BinarySearchTree } from "js/data-structures/binary-search-tree";
 
-const test = HashMap();
-
-test.set('apple', 'red')
-test.set('banana', 'yellow')
-test.set('carrot', 'orange')
-test.set('dog', 'brown')
-test.set('elephant', 'gray')
-test.set('frog', 'green')
-test.set('grape', 'purple')
-test.set('hat', 'black')
-test.set('ice cream', 'white')
-test.set('jacket', 'blue')
-test.set('kite', 'pink')
-test.set('lion', 'golden')
-
-console.log(test.length());
-
-test.set('moon', 'silver')
+export {
+  LinkedList,
+  LinkedListIterator,
+  HashMap,
+  HashSet,
+  BinarySearchTree,
+};
