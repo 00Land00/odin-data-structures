@@ -26,7 +26,7 @@ function HashSet() {
     const keyArr = keys();
     clear();
 
-    keyArr.forEach(key => {
+    keyArr.forEach((key) => {
       set(key);
     });
   }

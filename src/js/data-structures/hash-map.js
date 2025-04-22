@@ -65,7 +65,7 @@ function HashMap() {
 
     const hashCode = hash(key);
     const linkedList = hashMap[hashCode];
-    linkedList.removeAt(linkedList.find(nodeValue => nodeValue.key === key));
+    linkedList.removeAt(linkedList.find((nodeValue) => nodeValue.key === key));
     count--;
 
     if (count < MIN_LOAD_FACTOR * capacity && capacity > MIN_CAPACITY) {

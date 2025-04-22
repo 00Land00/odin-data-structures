@@ -2,7 +2,7 @@ import { Node } from "js/data-structures/node";
 import { LinkedList } from "js/data-structures/linked-list";
 
 function BinarySearchTree(initArr) {
-  initArr = [...new Set(arr)];
+  initArr = [...new Set(initArr)];
   initArr.sort((a, b) => a - b);
   let root = buildTree(initArr);
   const queue = LinkedList();

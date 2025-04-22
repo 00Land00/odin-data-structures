@@ -5,10 +5,4 @@ import { HashMap } from "js/data-structures/hash-map";
 import { HashSet } from "js/data-structures/hash-set";
 import { BinarySearchTree } from "js/data-structures/binary-search-tree";
 
-export {
-  LinkedList,
-  LinkedListIterator,
-  HashMap,
-  HashSet,
-  BinarySearchTree,
-};
+export { LinkedList, LinkedListIterator, HashMap, HashSet, BinarySearchTree };
